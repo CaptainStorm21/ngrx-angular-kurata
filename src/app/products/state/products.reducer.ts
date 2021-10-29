@@ -8,7 +8,7 @@ export const productReducer = createReducer(
     // inside of the function checkChanged()
     createAction('[Produce] Toggle Product'),
     state => {
-      console.log('original state: ' + JSON.stringify(state));
+      // console.log('original state: ' + JSON.stringify(state));
       return {
         ...state,
         showProductCode: !state.showProductCode
