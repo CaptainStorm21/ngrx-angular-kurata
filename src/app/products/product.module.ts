@@ -10,6 +10,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 
 /* NgRx */
 import { StoreModule } from '@ngrx/store';
+/* step 2 * import a reducer */
 import { productReducer } from './state/products.reducer';
 
 const productRoutes: Routes = [
@@ -21,6 +22,7 @@ const productRoutes: Routes = [
     SharedModule,
     RouterModule.forChild(productRoutes),
     // referencing to the reducer productReducer
+    /* step 3 * change from empty object as 2nd argument to reducer */
     StoreModule.forFeature('products', productReducer)
 
   ],
