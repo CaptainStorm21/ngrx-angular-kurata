@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import {  Store } from '@ngrx/store';
 
 import { Subscription } from 'rxjs';
 
@@ -22,7 +23,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
   selectedProduct: Product | null;
   sub: Subscription;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private store : Store <any>,
+    private productService: ProductService
+  ) { }
 
   ngOnInit(): void {
     this.sub = this.productService.selectedProductChanges$.subscribe(
@@ -39,8 +43,15 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  // Step 5 - replacing this block of code to dispatch an action
+  // checkChanged(): void {
+  //   this.displayCode = !this.displayCode;
+  // }
+
   checkChanged(): void {
-    this.displayCode = !this.displayCode;
+    this.store.dispatch(
+      { type: '[Produce] Toggle Product' }
+    )
   }
 
   newProduct(): void {
