@@ -1,3 +1,4 @@
+import { getShowProductCode } from './../state/products.reducer';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
@@ -39,14 +40,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: (err) => (this.errorMessage = err),
     });
 
-    this.store.select('products').subscribe(
-      // (products) => {
-      // if (products) {
-      //   this.displayCode = products.showProductCode;
-      // }}
+    // this.store.select('products').subscribe(
+    //   // (products) => {
+    //   // if (products) {
+    //   //   this.displayCode = products.showProductCode;
+    //   // }}
 
-      products => this.displayCode = products.showProductCode
-    );
+    //   products => this.displayCode = products.showProductCode
+    // );
+
+    // todo unsubscribe
+    this.store.select(getShowProductCode).subscribe(
+      showProductCode => { this.displayCode = showProductCode }
+    )
   }
 
   ngOnDestroy(): void {
@@ -54,7 +60,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   checkChanged(): void {
-    this.store.dispatch({ type: '[Produce] Toggle Product' });
+    this.store.dispatch({ type: '[Product] Toggle Product Code' });
   }
 
   newProduct(): void {
