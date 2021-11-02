@@ -5,7 +5,7 @@ import * as AppState from '../../state/app.state';
 
 
 export interface State extends AppState.State {
-  product: ProductState;
+  products: ProductState;
 }
 
 export interface ProductState{
@@ -14,17 +14,17 @@ export interface ProductState{
   products: Product[];
 }
 
-export const productReducer = createReducer(
-  { showProductCode: true },
+export const productReducer = createReducer < ProductState >(
+  { showProductCode: true } as ProductState,
   on(
     // we dispatch line 9 to product-list.component.ts
     // inside of the function checkChanged()
-    createAction('[Produce] Toggle Product'),
-    state => {
+    createAction('[Product] Toggle Product Code'),
+    (state): ProductState => {
       // console.log('original state: ' + JSON.stringify(state));
       return {
         ...state,
-        showProductCode: !state.showProductCode
+        showProductCode: !state.showProductCode,
       };
     }
   )

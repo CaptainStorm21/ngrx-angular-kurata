@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 
 import { Product } from '../product';
 import { ProductService } from '../product.service';
+import { State } from '../state/products.reducer';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   sub: Subscription;
 
   constructor(
-    private store : Store <any>,
+    private store : Store <State>,
     private productService: ProductService
   ) { }
 
