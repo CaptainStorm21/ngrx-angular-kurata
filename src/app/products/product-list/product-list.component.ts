@@ -39,11 +39,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
       error: (err) => (this.errorMessage = err),
     });
 
-    this.store.select('products').subscribe((products) => {
-      if (products) {
-        this.displayCode = products.showProductCode;
-      }
-    });
+    this.store.select('products').subscribe(
+      // (products) => {
+      // if (products) {
+      //   this.displayCode = products.showProductCode;
+      // }}
+
+      products => this.displayCode = products.showProductCode
+    );
   }
 
   ngOnDestroy(): void {
