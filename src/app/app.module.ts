@@ -18,6 +18,11 @@ import { PageNotFoundComponent } from './home/page-not-found.component';
 import { UserModule } from './user/user.module';
 import { StoreModule } from '@ngrx/store';
 
+/* Redux dev tools */
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -25,7 +30,12 @@ import { StoreModule } from '@ngrx/store';
     HttpClientInMemoryWebApiModule.forRoot(ProductData),
     UserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({
+      name: 'APM Devtools',
+      maxAge: 36,
+      logOnly: environment.production
+    })
   ],
   declarations: [
     AppComponent,
